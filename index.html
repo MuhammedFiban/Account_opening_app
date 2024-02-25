@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
-  <title>ACCOUNT OPENING APPLICATION</title>
+  <title>Account Opening Application</title>
 </head>
 <body>
 
   <div class="container">
     <div id="loginForm" class="card">
-      <h1 class="card-header text-center">ACCOUNT OPENING APPLICATION</h1>
+      <h1 class="card-header text-center">Account Opening Application</h1>
       <div class="card-body">
         <div class="form-group">
           <label for="username">Username:</label>
@@ -21,20 +21,20 @@
           <label for="password">Password:</label>
           <input type="password" class="form-control" id="password" required>
         </div>
-        <button type="button" class="btn btn-primary" onclick="login()">LOGIN</button>
+        <button type="button" class="btn btn-primary" onclick="login()">Login</button>
       </div>
     </div>
 
     <div id="csrDashboard" class="card" style="display: none">
-      <h1 class="card-header text-center">CSR DASHBOARD</h1>
+      <h1 class="card-header text-center">Csr Dashboard</h1>
       <div class="card-body">
-        <button class="btn btn-primary" onclick="openNewAccount()">OPEN NEW ACCOUNT</button>
+        <button class="btn btn-primary" onclick="openNewAccount()">Open New Account</button>
       
       </div>
     </div>
 
     <div id="accountFormContainer" class="card" style="display: none">
-      <h1 class="card-header text-center">APPLICATION FORM</h1>
+      <h1 class="card-header text-center">Application Form</h1>
       <div class="card-body">
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -102,8 +102,8 @@
             </div>
           </div>
 
-          <button type="button" class="btn btn-primary" onclick="submitForm()">SUBMIT</button>
-          <button class="btn btn-secondary" onclick="goBack()">BACK TO LOGIN</button>
+          <button type="button" class="btn btn-primary" onclick="submitForm()">Submit</button>
+          <button class="btn btn-secondary" onclick="goBack()">Back to login</button>
          
         </form>
       </div>
@@ -112,14 +112,14 @@
 
     <div id="branchManagerUI" style="display: none;">
       <div id="viewApplicationForm" style="display: none;"></div>
-      <h2>BRANCH MANAGER DASHBOARD</h2>
-      <h2>VIEW APPLICATION</h2>
+      <h2>Branch Manager Dashboard </h2>
+      <h2>View Application</h2>
       <div id="applicationDetails" class="card">
         <div class="card-body">
       <ul id="applicationsList"></ul>
       <div id="actionsContainer"></div>
-      <button class="btn btn-secondary" onclick="clearApplications()">CLEAR </button>
-      <button class="btn btn-secondary" onclick="goBack()">BACK TO LOGIN</button>
+      <button class="btn btn-secondary" onclick="clearApplications()">Clear </button>
+      <button class="btn btn-secondary" onclick="goBack()">Back to login</button>
 
     </div>
   </div>

@@ -109,6 +109,64 @@ body {
   margin-top: 10px;
 }
 
+/* Add this to your style.css or in the head section of your HTML */
+#viewDetailsContainer {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#viewDetailsContainer h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#detailsList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.detailsItem {
+  margin-bottom: 10px;
+}
+
+.detailsItem label {
+  font-weight: bold;
+}
+
+.detailsItem span {
+  color: #555;
+}
+
+#actionsContainer {
+  margin-top: 20px;
+}
+
+.approveButton,
+.rejectButton {
+  padding: 8px;
+  margin-right: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.approveButton {
+  background-color: #5cb85c;
+  color: #fff;
+  border: 1px solid #4cae4c;
+}
+
+.rejectButton {
+  background-color: #d9534f;
+  color: #fff;
+  border: 1px solid #d43f3a;
+}
+
 
 /* Default styles for larger screens */
 .container {

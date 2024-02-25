@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
-  <title>Account Opening Application</title>
+  <title>ACCOUNT OPENING APPLICATION</title>
 </head>
 <body>
 
   <div class="container">
     <div id="loginForm" class="card">
-      <h1 class="card-header text-center">Account Opening Application</h1>
+      <h1 class="card-header text-center">ACCOUNT OPENING APPLICATION</h1>
       <div class="card-body">
         <div class="form-group">
           <label for="username">Username:</label>
@@ -21,20 +21,20 @@
           <label for="password">Password:</label>
           <input type="password" class="form-control" id="password" required>
         </div>
-        <button type="button" class="btn btn-primary" onclick="login()">Login</button>
+        <button type="button" class="btn btn-primary" onclick="login()">LOGIN</button>
       </div>
     </div>
 
     <div id="csrDashboard" class="card" style="display: none">
-      <h1 class="card-header text-center">CSR Dashboard</h1>
+      <h1 class="card-header text-center">CSR DASHBOARD</h1>
       <div class="card-body">
-        <button class="btn btn-primary" onclick="openNewAccount()">Open New Account</button>
-        <!-- Additional CSR-specific content can be added here -->
+        <button class="btn btn-primary" onclick="openNewAccount()">OPEN NEW ACCOUNT</button>
+      
       </div>
     </div>
 
     <div id="accountFormContainer" class="card" style="display: none">
-      <h1 class="card-header text-center">Account Opening Application</h1>
+      <h1 class="card-header text-center">APPLICATION FORM</h1>
       <div class="card-body">
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -60,20 +60,20 @@
           <div class="form-group col-md-6">
             <label for="nationality">Nationality:</label>
             <select class="form-control" id="nationality" onchange="updateMobileValidation()" required>
-              <option value="" disabled selected>Select your nationality</option>
+              <option value="" selected disabled>Select your nationality</option>
               
             </select>
           </div>
           
           <div class="form-group col-md-6">
             <label for="idNumber">ID Number:</label>
-            <input type="text" class="form-control" id="idNumber" required pattern="^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,}$" title="Aadhaar or Passport number required">
+            <input type="text" class="form-control" id="idNumber" required pattern="[a-zA-Z0-9]{12}" title="Aadhaar or Passport number required">
           </div>
           
           <div class="form-group">
             <label for="mobileNumber">Mobile Number:</label>
-            <input type="tel" class="form-control" id="mobileNumber" required>
-            <small id="mobileNumberHelp" class="form-text text-muted">Please select a nationality first.</small>
+            <input type="tel" class="form-control" id="mobileNumber" required pattern = "[0-9]-{2}" title="Enter a valid 10 digit Number" required maxlength="12">
+
           </div>
           
 
@@ -102,8 +102,8 @@
             </div>
           </div>
 
-          <button type="button" class="btn btn-primary" onclick="submitForm()">Submit</button>
-          <button class="btn btn-secondary" onclick="goBack()">Back to Login</button>
+          <button type="button" class="btn btn-primary" onclick="submitForm()">SUBMIT</button>
+          <button class="btn btn-secondary" onclick="goBack()">BACK TO LOGIN</button>
          
         </form>
       </div>
@@ -112,18 +112,18 @@
 
     <div id="branchManagerUI" style="display: none;">
       <div id="viewApplicationForm" style="display: none;"></div>
-      <h2>Branch Manager Dashboard</h2>
-      <h2>View Application</h2>
+      <h2>BRANCH MANAGER DASHBOARD</h2>
+      <h2>VIEW APPLICATION</h2>
       <div id="applicationDetails" class="card">
         <div class="card-body">
       <ul id="applicationsList"></ul>
       <div id="actionsContainer"></div>
-      <button class="btn btn-secondary" onclick="clearApplications()">Clear Applications</button>
-      <button class="btn btn-secondary" onclick="goBack()">Back to Login</button>
+      <button class="btn btn-secondary" onclick="clearApplications()">CLEAR </button>
+      <button class="btn btn-secondary" onclick="goBack()">BACK TO LOGIN</button>
 
     </div>
   </div>
-
+<script src ="credentials.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

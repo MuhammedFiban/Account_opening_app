@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
   }
   
-  function submitForm() {
+  function Form() {
     const formData = {
       firstName: document.getElementById('firstName').value,
       lastName: document.getElementById('lastName').value,
@@ -30,44 +30,20 @@ document.addEventListener('DOMContentLoaded', function () {
       pinCode: document.getElementById('pinCode').value,
     }
 
-    if (!firstName || !lastName || !middleName || !dob || !nationality || !idNumber || !mobileNumber || !addressLine1 || !address || !city || !state || !pinCode) {
-      alert('Please fill in all required fields.');
-      return; // Stop further execution
-    }
-
-    if (!validateForm()) {
-      return;
-    }
-
   
-    // Validate Mobile Number
-    if (!validateMobileNumber(formData.mobileNumber)) {
-      alert('Please enter a valid 10-digit mobile number.');
-      return;
-    }
 
-    function updateMobileValidation() {
-      const nationalitySelect = document.getElementById('nationality');
-      const mobileNumberInput = document.getElementById('mobileNumber');
-      const mobileNumberHelp = document.getElementById('mobileNumberHelp');
-    
-      // Get the selected country code
-      const selectedCountryCode = nationalitySelect.value;
-    
-      // Set the pattern and title for mobile number based on the selected country code
-      switch (selectedCountryCode) {
-        case 'IN':
-          mobileNumberInput.pattern = "[0-9]{10}";
-          mobileNumberHelp.textContent = "Enter a valid 10-digit mobile number for India.";
-          break;
-        
-        default:
-          // Default validation for other countries
-          mobileNumberInput.pattern = "[0-9]+";
-          mobileNumberHelp.textContent = "Enter a valid mobile number.";
-          break;
-      }
+  // Validate all required fields
+  for (const key in formData) {
+    if (!formData[key]) {
+        alert(`Please fill in the ${key} field.`);
+        return;
     }
+}
+
+if (!validateMobileNumber(formData.mobileNumber, selectedCountryCode)) {
+  alert(`Please enter a valid mobile number for ${selectedCountryCode}.`);
+  return;
+}
   
     // Display result
     const resultContainer = document.getElementById('result');
@@ -75,18 +51,18 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   
   function validateIdNumber(idNumber) {
-    // Simple pattern to match either Aadhaar or Passport numbers
-    const pattern = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,}$/;
+    // Updated pattern for a 12-digit alphanumeric ID number
+    const pattern = /^[a-zA-Z0-9]{12}$/;
     return pattern.test(idNumber);
-  }
+}
   
   function validateMobileNumber(mobileNumber) {
     // Simple pattern to match a 10-digit mobile number
-    const pattern = /^[0-9]{10}$/;
+    const pattern = /^[0-9]{12}$/;
     return pattern.test(mobileNumber);
   }
   
-  // ... Existing JavaScript code ...
+  
   let currentUser = null;
 
 function login() {
@@ -145,12 +121,19 @@ function submitForm() {
       status: 'Pending Approval',
     
     };
+       // Check if any field is empty
+       for (const key in newApplication) {
+        if (newApplication[key] === '') {
+            alert(`Please fill in all fields.`);
+            return; // Stop further execution
+        }
+    }
 
-  // Load existing applications from localStorage
+  // Load existing applications 
   let applications = JSON.parse(localStorage.getItem('applications')) || [];
   applications.push(newApplication);
 
-  // Save applications to localStorage
+  // Save applications 
   localStorage.setItem('applications', JSON.stringify(applications));
 
   // Notify CSR form submission
@@ -167,7 +150,7 @@ function loadApplications() {
   const applicationsList = document.getElementById('applicationsList');
   applicationsList.innerHTML = ''; // Clear the list before loading
 
-  // Load existing applications from localStorage
+  // Load existing applications 
   let applications = JSON.parse(localStorage.getItem('applications')) || [];
 
   // Display applications in the list
@@ -185,21 +168,22 @@ function viewDetails(applicationId) {
     // Find the selected application
     const selectedApplication = applications.find(application => application.id === applicationId);
   
-    // Display full form details
-    const detailsMessage = `Details for Application #${applicationId}:\n
-    First Name: ${selectedApplication.firstName}\n
-    Last Name: ${selectedApplication.middleName}\n
-    Middle Name: ${selectedApplication.lastName || 'N/A'}\n
-    Date of Birth: ${selectedApplication.dob || 'N/A'}\n
-    Nationality: ${selectedApplication.nationality || 'N/A'}\n
-    ID Number: ${selectedApplication.idNumber || 'N/A'}\n
-    Mobile Number: ${selectedApplication.mobileNumber || 'N/A'}\n
-    Address Line 1: ${selectedApplication.addressLine1 || 'N/A'}\n
-    Address Line 2: ${selectedApplication.addressLine2 || 'N/A'}\n
-    City: ${selectedApplication.city || 'N/A'}\n
-    State: ${selectedApplication.state || 'N/A'}\n
-    Pin Code: ${selectedApplication.pinCode || 'N/A'}\n
-    Status: ${selectedApplication.status}`;
+    const detailsMessage = `Details for Application #${applicationId}:
+    First Name: ${selectedApplication.firstName}
+    Last Name: ${selectedApplication.middleName || 'N/A'}
+    Middle Name: ${selectedApplication.lastName || 'N/A'}
+    Date of Birth: ${selectedApplication.dob || 'N/A'}
+    Nationality: ${selectedApplication.nationality || 'N/A'}
+    ID Number: ${selectedApplication.idNumber || 'N/A'}
+    Mobile Number: ${selectedApplication.mobileNumber || 'N/A'}
+    Address Line 1: ${selectedApplication.addressLine1 || 'N/A'}
+    Address Line 2: ${selectedApplication.addressLine2 || 'N/A'}
+    City: ${selectedApplication.city || 'N/A'}
+    State: ${selectedApplication.state || 'N/A'}
+    Pin Code: ${selectedApplication.pinCode || 'N/A'}
+    Status: ${selectedApplication.status}
+    Account Number: ${selectedApplication.accountNumber || 'Not Generated yet'}`;
+
     
     // Display details
     alert(detailsMessage);
@@ -226,7 +210,7 @@ function viewDetails(applicationId) {
   
 
 function approveApplication(applicationId) {
-    // Simulate approving the application (replace with actual logic)
+    // Simulate approving the application 
     let applications = JSON.parse(localStorage.getItem('applications')) || [];
     const applicationIndex = applications.findIndex(app => app.id === applicationId);
   
@@ -249,14 +233,13 @@ function approveApplication(applicationId) {
   }
   
   function generateAccountNumber() {
-    // Placeholder function to generate a simple account number
-    return Math.floor(Math.random() * 1000000000) + 1000000000;
+    //  function to generate a simple account number
+    return Math.floor(Math.random() * 10000000000) + 10000000000;
   
 }
 
 
 function rejectApplication(applicationId) {
-    // Simulate rejecting the application (replace with actual logic)
     let applications = JSON.parse(localStorage.getItem('applications')) || [];
     const applicationIndex = applications.findIndex(app => app.id === applicationId);
     
@@ -270,7 +253,7 @@ function rejectApplication(applicationId) {
     // Remove the rejected application from the list
     applications = applications.filter(app => app.status !== 'Rejected');
     
-    // Save updated applications to localStorage
+    // Save updated applications 
     localStorage.setItem('applications', JSON.stringify(applications));
   
     // Reload applications for the Branch Manager
@@ -279,7 +262,7 @@ function rejectApplication(applicationId) {
   
 
 function clearForm() {
-  // Clear form fields (replace with actual form clearing logic)
+ 
   document.getElementById('firstName').value = '';
   document.getElementById('lastName').value = '';
   document.getElementById('middleName').value = '';
@@ -292,21 +275,13 @@ function clearForm() {
   document.getElementById('city').value = '';
   document.getElementById('state').value = '';
   document.getElementById('pinCode').value = '';
-  // ... (clear other fields)
+
 }
 
 function generateApplicationId() {
   // Placeholder function to generate a unique application ID
   return Math.floor(Math.random() * 1000) + 1;
 }
-
-// Example user credentials (replace with actual authentication logic)
-const userCredentials = [
-  { username: 'csruser', password: 'csrpwd', role: 'csr' },
-  { username: 'branchmanager', password: 'branchpwd', role: 'branchmanager' },
-];
-
-
 
 // Function to clear applications in the Branch Manager UI
 function clearApplications() {
@@ -315,6 +290,9 @@ function clearApplications() {
 
   // Clear the applications list on the UI
   document.getElementById('applicationsList').innerHTML = '';
+
+  const actionsContainer = document.getElementById('actionsContainer');
+  actionsContainer.innerHTML = '';
 }
 
 

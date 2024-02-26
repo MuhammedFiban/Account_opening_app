@@ -28,7 +28,7 @@ body {
   }
   
 
-/* Hide the login form initially */
+
 #form-container, #applications-container {
     display: none;
   }
@@ -37,8 +37,44 @@ body {
     display: none;
   }
   
+/* Add more styles as needed */
+.card {
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
 
-/* ... (your existing CSS code) */
+.card-header {
+  background-color: #007bff; /* Primary color for header */
+  color: #fff; /* Text color for header */
+  font-size: 1.8rem;
+  padding: 20px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.btn-lg {
+  padding: 15px;
+  font-size: 1.2rem;
+}
+
+.btn-lg:hover {
+  background-color: #0056b3; /* Darker color on hover */
+}
+
+/* Optional: Style the button for additional emphasis */
+.btn-success {
+  background-color: #28a745; /* Success color */
+  color: #fff; /* Text color for success button */
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #218838; /* Darker color on hover */
+}
+
+
 
 #branchManagerUI {
   display: none;
@@ -71,7 +107,7 @@ body {
   margin-top: 20px;
 }
 
-/* Add this CSS to your existing stylesheet */
+
 
  #viewApplicationForm {
   display: none;
@@ -80,15 +116,15 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background overlay */
+  background: rgba(0, 0, 0, 0.5); 
   z-index: 1000;
 }
 
 #applicationDetails {
   width: 80%;
-  max-width: 600px; /* Adjust max-width as needed */
-  margin: 50px auto; /* Center the form on the screen */
-  background-color: #fff; /* Form background color */
+  max-width: 600px; 
+  margin: 50px auto; 
+  background-color: #fff; 
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 20px;
@@ -100,7 +136,6 @@ body {
   color: #333;
 }
 
-/* Add any other styles you want for the form elements inside the box */
 #applicationDetails label {
   font-weight: bold;
 }
@@ -109,7 +144,6 @@ body {
   margin-top: 10px;
 }
 
-/* Add this to your style.css or in the head section of your HTML */
 #viewDetailsContainer {
   max-width: 600px;
   margin: 20px auto;
@@ -167,36 +201,84 @@ body {
   border: 1px solid #d43f3a;
 }
 
-
-/* Default styles for larger screens */
 .container {
   width: 80%;
   margin: 0 auto;
 }
 
-/* Responsive styles for medium-sized screens */
 @media (max-width: 768px) {
   .container {
     width: 90%;
   }
 }
 
-/* Responsive styles for smaller screens */
 @media (max-width: 576px) {
   .container {
     width: 100%;
   }
 }
 
-/* Default styles for larger screens */
 #csrUI, #branchManagerUI {
   padding: 20px;
 }
 
-/* Responsive styles for smaller screens */
 @media (max-width: 576px) {
   #csrUI, #branchManagerUI {
     padding: 10px;
   }
 }
 
+/* Larger than 1200px */
+@media (min-width: 1200px) {
+  .container {
+    width: 80%;
+  }
+
+  #csrUI, #branchManagerUI {
+    padding: 30px;
+  }
+}
+
+/* 992px to 1199px */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    width: 90%;
+  }
+
+  #csrUI, #branchManagerUI {
+    padding: 25px;
+  }
+}
+
+/* 768px to 991px */
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    width: 95%;
+  }
+
+  #csrUI, #branchManagerUI {
+    padding: 20px;
+  }
+}
+
+/* 576px to 767px */
+@media (min-width: 576px) and (max-width: 767px) {
+  .container {
+    width: 100%;
+  }
+
+  #csrUI, #branchManagerUI {
+    padding: 15px;
+  }
+}
+
+/* Smaller than 576px */
+@media (max-width: 575px) {
+  .container {
+    width: 100%;
+  }
+
+  #csrUI, #branchManagerUI {
+    padding: 10px;
+  }
+}
